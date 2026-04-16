@@ -1,0 +1,43 @@
+﻿{% extends 'base.html' %}
+{% block title %}EmbedBot | AI chatbot SaaS{% endblock %}
+{% block body %}
+<header class="marketing-header">
+  <div class="brand-row">
+    <a href="/" class="brand" aria-label="EmbedBot home">
+      <svg viewBox="0 0 48 48" aria-hidden="true" class="brand-logo"><path d="M10 13c0-4.4 3.6-8 8-8h12c4.4 0 8 3.6 8 8v11c0 4.4-3.6 8-8 8H19l-7 7v-7a8 8 0 0 1-2-5.3V13Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M17 18h14M17 24h10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+      <span>EmbedBot</span>
+    </a>
+    <div class="header-actions">
+      <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">?</button>
+      <a class="btn btn-ghost" href="/login">Login</a>
+      <a class="btn btn-primary" href="/signup">Start free</a>
+    </div>
+  </div>
+</header>
+<main id="main-content">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">AI support widget for growing businesses</p>
+      <h1>Create a chatbot and embed it in minutes.</h1>
+      <p class="hero-copy">Upload your business FAQs, preview answers live, and paste one script tag into your site. No coding required for day-to-day chatbot setup.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/signup">Create your chatbot</a>
+        <a class="btn btn-secondary" href="/login">View dashboard</a>
+      </div>
+    </div>
+    <div class="hero-card surface-card">
+      <div class="metric-grid">
+        <article><span>FAQ-first</span><strong>Lower AI cost</strong></article>
+        <article><span>Embed ready</span><strong>1 script tag</strong></article>
+        <article><span>Free plan</span><strong>1 chatbot</strong></article>
+        <article><span>Fallback AI</span><strong>Hugging Face</strong></article>
+      </div>
+    </div>
+  </section>
+  <section class="feature-strip">
+    <article class="surface-card"><h2>Simple setup</h2><p>Add a business name and FAQ pairs. The platform stores each bot configuration as JSON-backed data for quick updates.</p></article>
+    <article class="surface-card"><h2>Live preview</h2><p>Test replies in the dashboard before you publish the widget to your website.</p></article>
+    <article class="surface-card"><h2>Usage hooks</h2><p>Track chat counts, enforce a free-tier limit, and place upgrade prompts where they matter.</p></article>
+  </section>
+</main>
+{% endblock %}

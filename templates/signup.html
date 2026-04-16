@@ -1,0 +1,27 @@
+﻿{% extends 'base.html' %}
+{% block title %}Sign up | EmbedBot{% endblock %}
+{% block body %}
+<main id="main-content" class="auth-shell">
+  <section class="auth-card surface-card narrow">
+    <div class="auth-head">
+      <a href="/" class="brand inline-brand" aria-label="EmbedBot home">
+        <svg viewBox="0 0 48 48" aria-hidden="true" class="brand-logo"><path d="M10 13c0-4.4 3.6-8 8-8h12c4.4 0 8 3.6 8 8v11c0 4.4-3.6 8-8 8H19l-7 7v-7a8 8 0 0 1-2-5.3V13Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M17 18h14M17 24h10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        <span>EmbedBot</span>
+      </a>
+      <h1>Create your account</h1>
+      <p>Start with one free chatbot and upgrade later.</p>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-stack">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>
+      {% endif %}
+    {% endwith %}
+    <form method="post" action="/signup" class="auth-form">
+      <label>Email<input type="email" name="email" required></label>
+      <label>Password<input type="password" name="password" minlength="8" required></label>
+      <button class="btn btn-primary" type="submit">Create account</button>
+    </form>
+    <p class="auth-foot">Already have an account? <a href="/login">Login</a></p>
+  </section>
+</main>
+{% endblock %}

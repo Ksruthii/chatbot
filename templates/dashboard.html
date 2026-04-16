@@ -1,0 +1,101 @@
+﻿
+{% extends 'base.html' %}
+{% block title %}Dashboard | EmbedBot{% endblock %}
+{% block body %}
+<div class="app-shell">
+  <aside class="sidebar">
+    <div>
+      <a href="/dashboard" class="brand" aria-label="EmbedBot dashboard">
+        <svg viewBox="0 0 48 48" aria-hidden="true" class="brand-logo"><path d="M10 13c0-4.4 3.6-8 8-8h12c4.4 0 8 3.6 8 8v11c0 4.4-3.6 8-8 8H19l-7 7v-7a8 8 0 0 1-2-5.3V13Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M17 18h14M17 24h10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        <span>EmbedBot</span>
+      </a>
+      <nav class="nav-list" aria-label="Primary">
+        <a href="#bots" class="nav-item active">Chatbots</a>
+        <a href="#preview" class="nav-item">Preview</a>
+        <a href="#billing" class="nav-item">Upgrade plan</a>
+      </nav>
+    </div>
+    <a href="/logout" class="btn btn-secondary full-width">Logout</a>
+  </aside>
+  <div class="main-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Workspace</p>
+        <h1>Chatbot dashboard</h1>
+      </div>
+      <div class="topbar-actions">
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">?</button>
+        <button class="btn btn-primary" id="open-create-modal">Create new chatbot</button>
+      </div>
+    </header>
+    <main id="main-content" class="main-content">
+      <section class="stats-grid">
+        <article class="surface-card stat-card"><span>Total chatbots</span><strong id="bot-count">0</strong></article>
+        <article class="surface-card stat-card"><span>Chats served</span><strong id="total-chats">0</strong></article>
+        <article class="surface-card stat-card"><span>Plan</span><strong>Free</strong></article>
+      </section>
+      <section class="dashboard-grid">
+        <div class="surface-card panel">
+          <div class="panel-head">
+            <div>
+              <h2>Your chatbots</h2>
+              <p>Manage FAQ data, embed codes, and usage.</p>
+            </div>
+            <button class="btn btn-ghost">Upgrade plan</button>
+          </div>
+          <div id="bots-empty" class="empty-state hidden">
+            <h3>No chatbots yet</h3>
+            <p>Create your first bot to unlock the preview and embed script.</p>
+          </div>
+          <div id="bots-list" class="bots-list"></div>
+        </div>
+        <div class="surface-card panel" id="preview">
+          <div class="panel-head">
+            <div>
+              <h2>Live preview</h2>
+              <p>Pick a chatbot and test questions before publishing.</p>
+            </div>
+          </div>
+          <div class="preview-shell">
+            <div class="preview-header"><strong id="preview-title">Select a chatbot</strong><span id="preview-subtitle">Preview replies here</span></div>
+            <div id="preview-messages" class="preview-messages"></div>
+            <form id="preview-form" class="preview-form">
+              <input id="preview-input" type="text" placeholder="Ask a question" autocomplete="off">
+              <button class="btn btn-primary" type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<div class="modal hidden" id="create-modal" aria-hidden="true">
+  <div class="modal-card surface-card">
+    <div class="panel-head">
+      <div>
+        <h2>Create chatbot</h2>
+        <p>Add business details and FAQ answers.</p>
+      </div>
+      <button class="icon-btn" id="close-create-modal" aria-label="Close">�</button>
+    </div>
+    <form id="create-bot-form" class="bot-form">
+      <label>Chatbot name<input name="name" type="text" required></label>
+      <label>Business name<input name="business_name" type="text" required></label>
+      <div>
+        <div class="faq-head">
+          <strong>FAQs</strong>
+          <button class="btn btn-ghost" id="add-faq" type="button">Add FAQ</button>
+        </div>
+        <div id="faq-list" class="faq-list"></div>
+      </div>
+      <button class="btn btn-primary" type="submit">Save chatbot</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>window.APP_CONFIG={baseUrl:"{{ base_url }}"};</script>
+<script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+{% endblock %}
+
